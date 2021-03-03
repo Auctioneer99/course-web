@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Login from '@/Scripts/Models/Login.js';
+import Login from '@/Scripts/Models/Auth/Login.js';
 
 export default {
   name: 'SignIn',
@@ -45,6 +45,7 @@ export default {
       try {
         let data = new Login(this.mail, this.password);
         let user = await this.$store.dispatch("signIn", data);
+        await this.$store.dispatch("getUser", "main");
         this.$router.push("/profile/" + user.username);
       } catch (error) {
           this.error = error.message;

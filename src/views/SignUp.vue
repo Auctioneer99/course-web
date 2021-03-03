@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Registration from '@/Scripts/Models/Registration.js';
+import Registration from '@/Scripts/Models/Auth/Registration.js';
 
 export default {
   name: 'SignUp',

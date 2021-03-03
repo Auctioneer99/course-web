@@ -6,7 +6,7 @@
         <table class="table table-borderless table-hover">
           <thead class="thead-light">
             <tr>
-              <th>#</th><th>Name</th><th>Mode</th><th>Players</th>
+              <th>#</th><th>Name</th><th>Mode</th><th>Players</th><th>Address</th>
             </tr>
           </thead>
           <tbody>
@@ -47,7 +47,7 @@
         return this.currentRow ? this.currentRow.children[1].innerHTML : null;
       },
       serverList() {
-        return this.$store.state.serverList;
+        return this.$store.state.game.serverList;
       }
     },
     methods: {
@@ -63,56 +63,8 @@
       },
       refresh() {
         this.currentRow = null;
-        console.log("refreshing...")
-        //TODO:
-        /*
-        var gamelift = new AWS.GameLift();
-        console.log(gamelift.config);
-        var params1 = {
-          "AliasId": "string",
-          "FleetId": "fleet-1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-          "Limit": 10,
-          "NextToken": "",
-        };/*
-        var params = {
-          AliasId: 'STRING_VALUE',
-          FleetId: 'fleet-1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d',
-          Limit: '10',
-          NextToken: '',
-        };
-        gamelift.describeGameSessions(params1, (err, data) => {
-          if (err) console.log(err)
-          else console.log(data)
-        });*/
-        //console.log(gamelift);
-        //var res = gamelift.searchGameSessions({});
+        
         this.$store.dispatch("refreshServerList");
-        /*
-        this.$store.commit("setServerList", [{
-            Name: 123,
-            Mode: "Custom",
-            Slots: 0,
-            Players: 0
-          },
-          {
-            Name: 4576,
-            Mode: "Custom",
-            Slots: 0,
-            Players: 0
-          },
-          {
-            Name: 4124,
-            Mode: "Custom",
-            Slots: 0,
-            Players: 0
-          },
-          {
-            Name: 4543,
-            Mode: "Custom",
-            Slots: 0,
-            Players: 0
-          }
-        ]);*/
       },
       connect(item) {
         if (item != null)

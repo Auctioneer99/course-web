@@ -47,6 +47,18 @@ const routes = [
     name: "Profile",
     component: () => import("../views/Profile.vue"),
   },
+  {
+    path: "/collection",
+    name: "Collection",
+    component: () => import("../views/Collection.vue"),
+    //beforeEnter: (to, from, next) => redirectIfAuthenticated(to, from, next),
+  },
+  {
+    path: "/singleplayer",
+    name: "SinglePlayer",
+    component: () => import("../views/SinglePlayer.vue"),
+    //beforeEnter: (to, from, next) => redirectIfAuthenticated(to, from, next),
+  },
 ];
 
 const router = createRouter({

@@ -19,7 +19,7 @@
 <script>
 //import { Auth } from 'aws-amplify';
 
-import ForgotPasswordSubmit from "@/Scripts/Models/ForgotPasswordSubmit.js";
+import ForgotPasswordSubmit from "@/Scripts/Models/Auth/ForgotPasswordSubmit.js";
 
 export default {
   name: 'ResetPassword',

@@ -1,6 +1,6 @@
 <template>
 <tr>
-  <th>{{data.ID}}</th><td>{{data.Name}}</td><td>{{data.Mode}}</td><td>{{data.Players}}/{{data.Slots}}</td>
+  <th>{{data.ID}}</th><td>{{data.name}}</td><td>{{data.status}}</td><td>{{data.currentplayers}}/{{data.maxplayers}}</td><td>{{data.address}}</td>
 </tr>
 </template>
 

@@ -24,6 +24,14 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/about"><button class="btn btn-light btn-lg">About</button></router-link>
       </li>
+      <template v-if="user">
+        <li class="nav-item">
+          <router-link class="nav-link" to="/collection"><button class="btn btn-light btn-lg">Collection</button></router-link>
+        </li>
+      </template>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/singleplayer"><button class="btn btn-light btn-lg">SinglePlayer</button></router-link>
+      </li>
     </ul>
     <ul class="nav justify-content-center w-100 col-3 m-0">
       <template v-if="!user">
@@ -39,7 +47,7 @@
           <router-link class="nav-link" :to="'/profile/' + user.username"><button class="btn btn-light btn-lg">{{user.attributes.nickname}}</button></router-link>
         </li>
         <li class="nav-item">
-          <div class="nav-link"><button class="btn btn-light btn-lg" @click="this.$store.dispatch('logOut')">Log out</button></div>
+          <div class="nav-link"><button class="btn btn-light btn-lg" @click="$store.dispatch('logOut')">Log out</button></div>
         </li>
       </template>
     </ul>
@@ -66,13 +74,10 @@ export default {
   },
   computed: {
     user()  {
-      return this.$store.state.user;
+      return this.$store.state.auth.user;
     }
   },
   methods: {
-    log() {
-      console.log(this.user)
-    },
     toggleUI() {
       if (this.isHidden)
       {
@@ -92,9 +97,6 @@ export default {
       this.$refs.chevronDown.classList.toggle("d-none");
       this.isHidden = !this.isHidden
     },
-  },
-  created() {
-    this.$store.dispatch("initialize");
   },
 }
 </script>
