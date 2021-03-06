@@ -20,13 +20,15 @@ import userMapper from "@/Scripts/Interactors/UserProfileMapper.js";
 
 import collectionModule from "@/store/CollectionModule.js";
 import collectionService from "@/Scripts/Buisness/AwsDynamoCollection.js";
-import collectionMapper from "./Scripts/Interactors/CollectionMapper.js";
+import collectionMapper from "@/Scripts/Interactors/CollectionMapper.js";
+import cards from "@/Scripts/Models/Collection.js";
 
 let build = async () => {
   let auth = await authModule(awsAuth);
   let game = gameModule(gameLift(gameMapper));
   let users = usersModule(userService(userMapper));
-  let collection = collectionModule(collectionService(collectionMapper));
+
+  let collection = collectionModule(collectionService(collectionMapper), cards);
 
   const store = new Vuex.Store({
     modules: {

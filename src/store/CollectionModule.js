@@ -1,20 +1,32 @@
-export default (service, collection) =>
+export default (service, cards) =>
 {
+  let getted = false;
     return {
       actions: {
-        async updateCollection(context) {
-          let cards = await service.getCollection();
-          context.commit("setCollection", cards);
+        async getCollection(context) {
+          if (getted == false)
+          {
+            console.log("updating collection");
+            context.dispatch("updateCollectionCount");
+            getted = true;
+          }
+        },
+        async updateCollectionCount(context) {
+          let cardsCount = await service.getCollection();
+          context.commit("updateCards", cardsCount);
           return;
         },
       },
       mutations: {
-        setCollection(state, payload) {
-          state.collection = payload;
+        updateCards(state, payload) {
+          state.cards.forEach(card => {
+            let count = payload[card.id];
+            card.count = count ? count : 0;
+          });
         },
       },
       state: {
-        collection: collection,
+        cards: cards,
       },
     };
 }
