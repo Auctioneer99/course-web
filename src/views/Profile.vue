@@ -9,45 +9,25 @@
 
 <script>
 
-import $ from "jquery/src/jquery.js";
-//import axios from "axious";
-
 export default {
   computed:
   {
+    userid()
+    {
+      return this.$route.params.id;
+    },
     profile() 
     {
-      return {};
-      //let profile = this.$store.state.users.users["main"];
-      //return profile ? profile : {};
+      let profile = this.$store.state.users.users[this.userid];
+      return profile ? profile : {};
     }
   },
   methods: {
-    prof() {
-      console.log(localStorage);
-      let token = localStorage.getItem("CognitoIdentityServiceProvider.6226etjlkdkt7nmc6lbure3njb.c39dd3d9-48bd-4cfb-8f36-3e8b8a50ae77.idToken");
-      console.log(token);
-      
-      $.ajax({
-        //headers: { 'Authorization': token },
-        url: "https://klcp4z2r7c.execute-api.us-west-2.amazonaws.com/prod/profileget",
-        dataType: "json",
-        method: "GET",
-        success: (data, status) => {
-          console.log(data);
-          console.log(status);
-        }
-      });
-    }
-  }
-  ,
+  },
   mounted() {
-    /*
-    axios.get("https://klcp4z2r7c.execute-api.us-west-2.amazonaws.com/prod")
-    .then((data) => console.log(data));*/
+    this.$store.dispatch("getUser", {invoker: this.$store.state.auth.user.username, username: this.userid});
   },
   beforeCreate() {
-    //this.$store.dispatch("getUser", "main");
   }
 }
 </script>

@@ -44,8 +44,9 @@ export default {
       this.disabled = true;
       try {
         let data = new Login(this.mail, this.password);
-        let user = await this.$store.dispatch("signIn", data);
-        await this.$store.dispatch("getUser", "main");
+        await this.$store.dispatch("signIn", data);
+        let user = this.$store.state.auth.user;
+        await this.$store.dispatch("getUser", {invoker: user.username, username: user.username});
         this.$router.push("/profile/" + user.username);
       } catch (error) {
           this.error = error.message;

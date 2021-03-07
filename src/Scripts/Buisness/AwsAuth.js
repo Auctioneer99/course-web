@@ -60,12 +60,12 @@ export default {
     await this.updateCredentials();
     return user;
   },
-  async register({ nickname, mail, password }) {
+  async signUp(registrationData) {
     let response = await Auth.signUp({
-      username: mail,
-      password: password,
+      username: registrationData.email,
+      password: registrationData.password,
       attributes: {
-        nickname: nickname,
+        nickname: registrationData.nickname,
       },
     });
     return response;

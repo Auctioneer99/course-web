@@ -1,9 +1,12 @@
 import UserProfile from "@/Scripts/Models/UserProfile.js";
 
 export default {
-    map(data)
-    {
-        let userProfile = new UserProfile(data.name, data.registred, data.lastonline);
-        return userProfile;
-    }
-}
+  map(data) {
+    let userProfile = new UserProfile(
+      data.profile.nickname,
+      new Date(data.profile.registrationDate * 1000).toUTCString(),
+      "N/A"
+    );
+    return userProfile;
+  },
+};

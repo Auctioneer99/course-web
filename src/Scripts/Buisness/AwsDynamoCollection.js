@@ -1,15 +1,20 @@
-export default () => {
+import $ from "jquery/src/jquery.js";
 
-    return {
-        async getCollection() {
-            let response = {
-                2: 1
-            };
-            //let cardCount = mapper.map(response);
-            return response;// cardCount;
-        },
-        async getCardInfo() {
+export default (mapper) => {
+  return {
+    async getCollection(authToken) {
+      let url =
+        "https://4gmu6g6j56.execute-api.us-west-2.amazonaws.com/prod/collection";
 
-        }
-    }
-}
+      let response = await $.ajax({
+        headers: { Authorization: authToken },
+        url: url,
+        method: "GET",
+      });
+      let collection = mapper.map(response);
+      console.log(collection);
+      return collection;
+    },
+    async getCardInfo() {},
+  };
+};

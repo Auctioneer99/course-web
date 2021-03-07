@@ -1,11 +1,15 @@
-import Card from "@/Scripts/Models/Card.js";
+//import Card from "@/Scripts/Models/Card.js";
 
 export default {
   map(data) {
     let collection = [];
-    data.forEach((count, id) => {
-      let card = new Card(id, count);
-      collection.push(card);
+    data.collection.forEach((value) => {
+      let id = value.SK.split("#")[1];
+      let cardCounter = {
+        id: id,
+        count: value.count,
+      };
+      collection[id] = cardCounter;
     });
     return collection;
   },
