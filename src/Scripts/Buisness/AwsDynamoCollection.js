@@ -12,7 +12,6 @@ export default (mapper) => {
         method: "GET",
       });
       let collection = mapper.map(response);
-      console.log(collection);
       return collection;
     },
     async getCardInfo() {},

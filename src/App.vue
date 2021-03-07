@@ -61,10 +61,12 @@
       </router-view>
     </div>
   </div>
+  <Game/>
 </template>
 
 <script>
 import Velocity from "velocity-animate";
+import Game from "@/views/Game.vue";
 
 export default {
   data() {
@@ -76,6 +78,9 @@ export default {
     user()  {
       return this.$store.state.auth.user;
     }
+  },
+  components: {
+    Game,
   },
   methods: {
     toggleUI() {
