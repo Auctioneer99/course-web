@@ -59,6 +59,12 @@ const routes = [
     component: () => import("../views/SinglePlayer.vue"),
     //beforeEnter: (to, from, next) => redirectIfAuthenticated(to, from, next),
   },
+  {
+    path: "/market",
+    name: "Market",
+    component: () => import("../views/Market.vue"),
+    //beforeEnter: (to, from, next) => redirectIfAuthenticated(to, from, next),
+  },
 ];
 
 const router = createRouter({

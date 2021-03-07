@@ -1,9 +1,17 @@
 <template>
-  <div class="about">
-    <h1>{{profile.name}} -- profile</h1>
-    <label>Registration date: {{profile.registred}}</label><br/>
-    <label>Last online: {{profile.lastonline}}</label><br/>
-    <button class="btn" @click="prof">profileget</button>
+  <div class="d-inline d-inline-flex flex-column h-100 w-100">
+    <h1 class="mx-auto">{{profile.name}} -- profile</h1>
+    <div class="row overflow-auto">
+      <div class="col-3 mb-3 d-inline d-inline-flex flex-column">
+        <h3 class="mx-auto">Statistics</h3>
+        <label>Registration date: {{profile.registred}}</label><br/>
+        <label>Last online: --{{profile.lastonline}}</label><br/>
+      </div>
+      <div class="col-9 mb-3 d-inline d-inline-flex flex-column">
+        <h3 class="mx-auto">Last activity</h3>
+        <div style="width:300px;height:200px;background-color:black">asd</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,7 +33,7 @@ export default {
   methods: {
   },
   mounted() {
-    this.$store.dispatch("getUser", {invoker: this.$store.state.auth.user.username, username: this.userid});
+    //this.$store.dispatch("getUser", {invoker: this.$store.state.auth.user.username, username: this.userid});
   },
   beforeCreate() {
   }

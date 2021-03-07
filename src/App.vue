@@ -32,6 +32,9 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/singleplayer"><button class="btn btn-light btn-lg">SinglePlayer</button></router-link>
       </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/market"><button class="btn btn-light btn-lg">Market</button></router-link>
+      </li>
     </ul>
     <ul class="nav justify-content-center w-100 col-3 m-0">
       <template v-if="!user">

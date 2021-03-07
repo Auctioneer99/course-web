@@ -4,15 +4,15 @@
 			<div class="flip-card-front w-100 h-100 position-absolute"> 
 				<div class="card" style="height: 25rem;">
 					<div class="card-img-top" style="height: 15rem;">
-						<div class="w-100 h-100 margin-auto font-weight-bold" v-bind:style="'background-image: url(' + data.img + ')'">
-							<div class="w-50 h-50 p-1 d-inline d-inline-flex flex-column">
-								<div><span class="bg-warning p-1 rounded-circle">H:{{data.health}}</span></div>
-								<div><span class="bg-warning p-1 rounded-circle">A:{{data.attack}}</span></div>
-								<div><span class="bg-warning p-1 rounded-circle">I:{{data.initiative}}</span></div>
-								<div><span class="bg-warning p-1 rounded-circle">M:{{data.moves}}</span></div>
+						<div class="w-100 h-100 margin-auto font-weight-bold rounded-top" v-bind:style="'background-image: url(' + data.img + ');background-size:100% 100%;'">
+							<div class="p-1 d-inline d-inline-flex flex-column bg-light rounded">
+								<span>H:{{data.health}}</span>
+								<span>A:{{data.attack}}</span>
+								<span>I:{{data.initiative}}</span>
+								<span>M:{{data.moves}}</span>
 							</div>
-							<div class="float-right d-inline p-1">
-								<span class="bg-warning p-1 rounded-circle">x {{data.count}}</span>
+							<div class="float-right d-inline bg-light p-1 rounded">
+								<span>x {{data.count}}</span>
 							</div>
 						</div>
 					</div>
