@@ -26,7 +26,7 @@ export default {
     async forgotPassword() {
       this.disabled = true;
       try {
-        await this.$store.dispatch("forgotPassword", this.email);
+        await this.$store.dispatch("forgotPassword", this.mail);
         this.$router.push({ name : "ResetPassword", params: { mail: this.mail }});
       } catch (error) {
           this.error = error.message;
@@ -39,4 +39,12 @@ export default {
     }
   },
 }
+/*
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::vue-spa-demo-zalilov/*"
+        },*/
 </script>

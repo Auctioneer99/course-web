@@ -12,15 +12,16 @@ import awsAuth from "@/Scripts/Buisness/AwsAuth.js";
 
 import gameModule from "@/store/GameModule.js";
 import gameLift from "@/Scripts/Buisness/GameLift.js";
-import gameMapper from "@/Scripts/Interactors/GameSessionMapper.js";
+import gameMapper from "@/Scripts/Mappers/GameSessionMapper.js";
 
 import usersModule from "@/store/UserProfileModule.js";
 import userService from "@/Scripts/Buisness/AwsUser.js";
-import userMapper from "@/Scripts/Interactors/UserProfileMapper.js";
+import userMapper from "@/Scripts/Mappers/UserProfileMapper.js";
 
 import collectionModule from "@/store/CollectionModule.js";
 import collectionService from "@/Scripts/Buisness/AwsDynamoCollection.js";
-import collectionMapper from "@/Scripts/Interactors/CollectionMapper.js";
+import collectionMapper from "@/Scripts/Mappers/CollectionMapper.js";
+import cardStatisticsMapper from "@/Scripts/Mappers/CardStatisticsMapper.js";
 import cards from "@/Scripts/Models/Collection.js";
 
 let build = async () => {
@@ -28,7 +29,10 @@ let build = async () => {
   let game = gameModule(gameLift(gameMapper));
   let users = usersModule(userService(userMapper));
 
-  let collection = collectionModule(collectionService(collectionMapper), cards);
+  let collection = collectionModule(
+    collectionService(collectionMapper, cardStatisticsMapper),
+    cards
+  );
 
   const store = new Vuex.Store({
     modules: {

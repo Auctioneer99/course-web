@@ -28,11 +28,9 @@ export default {
     }
   },
   methods: {
-      collec() {
-        this.$store.dispatch("updateCollectionCount", this.$store.state.auth.user.username);
-      }
   },
-  beforeCreate() {
+  async mounted() {
+    this.$store.dispatch("updateCollectionCount", await this.$store.getters.authToken);
   }
 }
 </script>

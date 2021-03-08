@@ -2,22 +2,25 @@ export default (service, cards) => {
   let getted = false;
   return {
     actions: {
-      async getCollection(context, invoker) {
+      async getCollection(context, authToken) {
         if (getted == false) {
           console.log("updating collection");
-          context.dispatch("updateCollectionCount", invoker);
+          context.dispatch("updateCollectionCount", authToken);
           getted = true;
         }
       },
-      async updateCollectionCount(context, invoker) {
-        let tokenpath =
-          "CognitoIdentityServiceProvider.6226etjlkdkt7nmc6lbure3njb." +
-          invoker +
-          ".idToken";
-        let token = localStorage.getItem(tokenpath);
-        let cardsCount = await service.getCollection(token);
+      async updateCollectionCount(context, authToken) {
+        let cardsCount = await service.getCollection(authToken);
         context.commit("updateCards", cardsCount);
         return;
+      },
+      async getCardStat(context, { cardid, authToken }) {
+        let card = context.state.cards[cardid];
+        if (card.shouldUpdate) {
+          let stat = await service.getCardStat(cardid, authToken);
+          card.statistics = stat;
+          card.shouldUpdate = false;
+        }
       },
     },
     mutations: {

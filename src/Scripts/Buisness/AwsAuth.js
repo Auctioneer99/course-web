@@ -2,21 +2,6 @@ import AWS from "aws-sdk";
 
 import Amplify, { Auth } from "aws-amplify";
 
-//import AWS from "aws-sdk";
-/*
-AWS.config = new AWS.Config({
-  region: "us-west-2",
-  credentials: new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: "us-west-2:179a6e94-d52b-4141-994e-9118f902b587",
-  }),
-  sslEnabled: true,
-  amplify: {
-    Auth: {
-      userPoolId: "us-west-2_ebA6f9OC2",
-      userPoolWebClientId: "6226etjlkdkt7nmc6lbure3njb",
-    },
-  },
-});*/
 import credentials from "@/Credentials/cognito.js";
 
 import awsconfig from "@/Credentials/aws.js";
@@ -73,7 +58,20 @@ export default {
   async forgotPassword(mail) {
     await Auth.forgotPassword(mail);
   },
-  async forgotPasswordSubmit({ mail, code, password }) {
+  async forgotPasswordSubmit(mail, code, password) {
+    console.log(mail);
+    console.log(code);
+    console.log(password);
+
     await Auth.forgotPasswordSubmit(mail, code, password);
+  },
+  async authToken() {
+    let user = await Auth.currentAuthenticatedUser();
+    let tokenpath =
+      "CognitoIdentityServiceProvider.6226etjlkdkt7nmc6lbure3njb." +
+      user.username +
+      ".idToken";
+    let token = localStorage.getItem(tokenpath);
+    return token;
   },
 };

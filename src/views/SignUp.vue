@@ -52,6 +52,7 @@ export default {
       try {
         let data = new Registration(this.nickname, this.mail, this.password1);
         await this.$store.dispatch("signUp", data);
+        this.$router.push("/signin");
         this.error = "";
         this.success = "Success. Check out your email address";
       } catch (error) {

@@ -1,6 +1,6 @@
 <template>
   <div id="unity-container" class="unity-desktop w-100 h-100">
-    <canvas class="w-100 h-100" id="unity-canvas"></canvas>
+    <canvas class="w-100 h-100" id="unity-canvas" tabindex="3"></canvas>
     <div id="unity-loading-bar">
       <div id="unity-logo"></div>
       <div id="unity-progress-bar-empty">

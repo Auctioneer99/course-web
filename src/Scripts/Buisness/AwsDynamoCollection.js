@@ -1,19 +1,27 @@
 import $ from "jquery/src/jquery.js";
+import ApiRoutes from "@/Credentials/apiroutes.js";
 
-export default (mapper) => {
+export default (collectionMapper, statMapper) => {
   return {
     async getCollection(authToken) {
-      let url =
-        "https://4gmu6g6j56.execute-api.us-west-2.amazonaws.com/prod/collection";
-
       let response = await $.ajax({
         headers: { Authorization: authToken },
-        url: url,
+        url: ApiRoutes.collection,
         method: "GET",
       });
-      let collection = mapper.map(response);
+      let collection = collectionMapper.map(response);
       return collection;
     },
-    async getCardInfo() {},
+    async getCardStat(cardid, authToken) {
+      let response = await $.ajax({
+        headers: { Authorization: authToken },
+        url: ApiRoutes.cardstat + cardid,
+        method: "GET",
+      });
+      console.log(response);
+      let stat = statMapper.map(response);
+      console.log(stat);
+      return stat;
+    },
   };
 };

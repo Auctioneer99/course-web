@@ -30,11 +30,11 @@
 					<div class="w-100 h-100 d-flex flex-column justify-content-around" style="background-color:white;">
 						<h4 class="m-auto">{{data.name}}</h4>
 						<h5 class="m-auto">Statistics</h5>
-						<div class="m-auto">Play: {{data.statistics.playCount ? data.statistics.playCount : 0}}</div>
-						<div class="m-auto">Death: {{data.statistics.deathCount ? data.statistics.deathCount : 0}}</div>
-						<div class="m-auto">Kill: {{data.statistics.killCount ? data.statistics.killCount : 0}}</div>
-						<div class="m-auto"></div>
-						<div class="m-auto"></div>
+						<div class="m-auto">Play: {{data.statistics.playCount}}</div>
+						<div class="m-auto">Death: {{data.statistics.deathCount}}</div>
+						<div class="m-auto">Kill: {{data.statistics.killCount}}</div>
+						<div class="m-auto">DamageDealt: {{data.statistics.damageDealt}}</div>
+						<div class="m-auto">DamageReceived: {{data.statistics.damageReceived}}</div>
 						<button class="btn align-bottom inline-block m-auto" @click="flip">Back</button>
 					</div>
 				</div>  
@@ -49,12 +49,25 @@
 
 export default {
 	name: 'CardAnim',
+	data() {
+		return {
+			flipped: false,
+		}
+	},
   props: {
-    data: Object
+    data: Object,
   },
 	methods: {
 		flip() {
+			this.flipped = !this.flipped;
 			this.$refs.card.classList.toggle('flipped');
+			if (this.flipped)
+			{
+				this.getCardStat(this.data.id);
+			}
+		},
+		async getCardStat(id) {
+			this.$store.dispatch("getCardStat", {authToken: await this.$store.getters.authToken, cardid: id})
 		}
 	}
 }

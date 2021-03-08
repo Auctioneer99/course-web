@@ -38,5 +38,10 @@ export default async (Auth) => {
     state: {
       user: user,
     },
+    getters: {
+      async authToken() {
+        return await Auth.authToken();
+      },
+    },
   };
 };

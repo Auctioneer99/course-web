@@ -3,12 +3,12 @@
     <h1>Sign In</h1>
     <form @submit.prevent="signIn">
       <div class="form-group">
-        <label for="InputEmail">Email address</label>
+        <label tabindex="1" for="InputEmail">Email address</label>
         <input v-model="mail" required type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" :disabled="disabled">
       </div>
       <div class="form-group">
         <label for="InputPassword">Password</label>
-        <input v-model="password" required type="password" class="form-control" id="InputPassword" :disabled="disabled">
+        <input tabindex="2" v-model="password" required type="password" class="form-control" id="InputPassword" :disabled="disabled">
       </div>
       <!--
       <div class="form-group form-check ml-3">
@@ -46,7 +46,9 @@ export default {
         let data = new Login(this.mail, this.password);
         await this.$store.dispatch("signIn", data);
         let user = this.$store.state.auth.user;
-        await this.$store.dispatch("getUser", {invoker: user.username, username: user.username});
+        let authToken = await this.$store.getters.authToken;
+        await this.$store.dispatch("getUser", {authToken: authToken, username: user.username});
+        
         this.$router.push("/profile/" + user.username);
       } catch (error) {
           this.error = error.message;

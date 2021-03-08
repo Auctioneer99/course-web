@@ -8,7 +8,7 @@
       </div>
       <div class="form-group">
         <label for="InputPassword">New password</label>
-        <input v-model="password" required type="text" class="form-control" id="InputPassword" :disabled="disabled">
+        <input v-model="password" required type="password" class="form-control" id="InputPassword" :disabled="disabled">
       </div>
       <button class="btn btn-light btn-lg" :disabled="disabled">Send</button><br><br>
     </form>
@@ -39,7 +39,7 @@ export default {
     async resetPassword() {
       this.disabled = true;
       try {
-        let data = new ForgotPasswordSubmit(this.mail, this.code, this.password);
+          let data = new ForgotPasswordSubmit(this.mail, this.code, this.password);
           await this.$store.dispatch("forgotPasswordSubmit", data)
           this.$router.push("/signin");
       } catch (error) {
