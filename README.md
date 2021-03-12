@@ -1,5 +1,7 @@
 # course-demo
 
+http://d2tzbelhp8qysm.cloudfront.net/
+
 ## Project setup
 ```
 npm install
